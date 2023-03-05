@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="">
+	<Valve
+		className="org.apache.catalina.valves.JDBCAccessLogValve"
+		connectionName="kinmen"
+		connectionPassword="kmthank14"
+		driverName="org.postgresql.Driver"
+		connectionURL="jdbc:postgresql://kinmen.cwftpiyu5oyc.ap-northeast-2.rds.amazonaws.com:5432/KinMenDB"
+		tableName='"AccessLog"'
+		remoteHostField='"remoteHost"'
+		userField='"userName"'
+		virtualHostField='"virtualHost"'
+		methodField='"method"'
+		queryField='"query"'
+		statusField='"status"'
+		bytesField='"bytes"'
+		refererField='"referer"'
+		userAgentField='"userAgent"'
+		pattern="combined"
+		resolveHosts="false"
+	/>
+	<Resource
+		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+		type="javax.sql.DataSource"
+
+		auth="Container"
+		closeMethod="close"
+		name="jdbc/AnochMallDS"
+		url="jdbc:postgresql://kinmen.cwftpiyu5oyc.ap-northeast-2.rds.amazonaws.com:5432/KinMenDB"
+
+		defaultAutoCommit="false"
+		defaultCatalog="KinMenDB"
+		driverClassName="org.postgresql.Driver"
+		username="kinmen"
+		password="kmthank14"
+		testOnBorrow="true"
+		testOnReturn="true"
+		testWhileIdle="true"
+		validationQuery="SELECT 1"
+		removeAbandoned="true"
+		logAbandoned="true"
+
+		rollbackOnReturn="true"
+	/>
+	<Realm
+		className="org.apache.catalina.realm.DataSourceRealm"
+
+		allRolesMode="authOnly"
+		dataSourceName="jdbc/AnochMallDS"
+		digest="MD5"
+		digestEncoding="UTF-8"
+		localDataSource="true"
+		roleNameCol="role"
+		userCredCol="credentials"
+		userNameCol="name"
+		userRoleTable='"passwd"'
+		userTable='"passwd"'
+	/>
+</Context>
